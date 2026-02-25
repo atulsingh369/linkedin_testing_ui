@@ -151,7 +151,7 @@ export default function Home() {
             <p className="text-xs text-yellow-700">
               Login with your credentials. If LinkedIn sends a verification
               code, enter it in the VNC window. This page will auto-detect when
-              you're done.
+              you&apos;re done.
             </p>
           </div>
         )}
@@ -197,7 +197,9 @@ export default function Home() {
 
         {/* Live Log */}
         <div className="rounded-lg bg-slate-950 p-4 h-40 overflow-y-auto space-y-1">
-          <p className="text-xs text-slate-500 mb-2 font-mono">// Live Logs</p>
+          <p className="text-xs text-slate-500 mb-2 font-mono">
+            {"// Live Logs"}
+          </p>
           {log.length === 0 && (
             <p className="text-xs text-slate-600 font-mono">
               No activity yet...

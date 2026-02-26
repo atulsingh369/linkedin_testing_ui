@@ -76,6 +76,25 @@ export default function Home() {
     }
   };
 
+  const handleDisconnect = async () => {
+    try {
+      addLog("Disconnecting LinkedIn session...");
+      const res = await fetch(`${BASE_URL}/linkedin/disconnect`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ userId: DEMO_USER_ID }),
+      });
+
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+
+      setStatus("idle");
+      setVncUrl("");
+      addLog("Disconnected. You can re-login anytime.");
+    } catch (err) {
+      addLog(`❌ Disconnect error: ${err}`);
+    }
+  };
+
   const handleSendConnectionRequest = async () => {
     const trimmedUrl = profileUrl.trim();
     if (!trimmedUrl) return;
@@ -129,9 +148,19 @@ export default function Home() {
         </h1>
 
         {/* Status Badge */}
-        <div className="flex items-center gap-2">
-          <span className={`h-3 w-3 rounded-full ${statusColor}`} />
-          <span className="text-sm text-slate-600">{statusText}</span>
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-2">
+            <span className={`h-3 w-3 rounded-full ${statusColor}`} />
+            <span className="text-sm text-slate-600">{statusText}</span>
+          </div>
+          {status === "connected" && (
+            <button
+              onClick={handleDisconnect}
+              className="text-sm text-red-500 hover:text-red-700 underline underline-offset-2 transition"
+            >
+              Disconnect
+            </button>
+          )}
         </div>
 
         {/* VNC Link — shows after browser opens */}

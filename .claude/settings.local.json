@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(du:*)",
+      "Bash(lsof:*)",
+      "Bash(timeout 60 bash:*)",
+      "Bash(gtimeout 60:*)",
+      "Bash(source:*)",
+      "Bash(sysctl:*)",
+      "Bash(ps:*)"
+    ]
+  }
+}
